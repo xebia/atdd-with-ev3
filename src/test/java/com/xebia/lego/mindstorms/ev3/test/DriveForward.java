@@ -19,7 +19,6 @@ public class DriveForward implements Behavior{
 
     public void action() {
         try {
-            suppressed = false;
             StopTest.leftMotor.forward();
             StopTest.rightMotor.forward();
             while( !suppressed ) {
