@@ -1,4 +1,4 @@
-package com.xebia.lego.mindstorms.ev3.test;
+package com.xebia.lego.mindstorms.ev3;
 
 import lejos.hardware.Sound;
 import lejos.hardware.sensor.EV3ColorSensor;

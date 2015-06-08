@@ -1,5 +1,6 @@
-package com.xebia.lego.mindstorms.ev3.test;
+package com.xebia.lego.mindstorms.ev3.behavior;
 
+import com.xebia.lego.mindstorms.ev3.Ev3BrickIO;
 import lejos.robotics.subsumption.Behavior;
 
 import java.rmi.RemoteException;

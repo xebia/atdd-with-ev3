@@ -1,5 +1,6 @@
 package com.xebia.lego.mindstorms.ev3.test;
 
+import com.xebia.lego.mindstorms.ev3.Ev3BrickIO;
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 import org.junit.AfterClass;

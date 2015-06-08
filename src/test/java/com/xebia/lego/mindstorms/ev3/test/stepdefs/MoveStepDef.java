@@ -1,8 +1,8 @@
 package com.xebia.lego.mindstorms.ev3.test.stepdefs;
 
-import com.xebia.lego.mindstorms.ev3.test.DriveForward;
-import com.xebia.lego.mindstorms.ev3.test.Ev3BrickIO;
-import com.xebia.lego.mindstorms.ev3.test.StopOnYellow;
+import com.xebia.lego.mindstorms.ev3.Ev3BrickIO;
+import com.xebia.lego.mindstorms.ev3.behavior.DriveForward;
+import com.xebia.lego.mindstorms.ev3.behavior.StopOnYellow;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import lejos.robotics.subsumption.Arbitrator;
