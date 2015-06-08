@@ -1,23 +1,20 @@
 package com.xebia.lego.mindstorms.ev3.test;
 
-import cucumber.api.CucumberOptions;
-import cucumber.api.junit.Cucumber;
 import lejos.hardware.Sound;
 import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.remote.ev3.RMIRegulatedMotor;
 import lejos.remote.ev3.RemoteEV3;
+import lejos.robotics.subsumption.Arbitrator;
+import lejos.robotics.subsumption.Behavior;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.runner.RunWith;
+import org.junit.Test;
 
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-@RunWith(Cucumber.class)
-@CucumberOptions(format = {"pretty", "html:target/cucumber"})
-public class CucumberTest {
-
+public class StopTest {
 
     public static EV3ColorSensor colorSensor;
     public static RMIRegulatedMotor leftMotor;
@@ -58,10 +55,18 @@ public class CucumberTest {
         if (motor != null) {
             motor.resetTachoCount();
             motor.rotateTo(0);
-            motor.setSpeed(200);
-            motor.setAcceleration(400);
+            motor.setSpeed(400);
+            //motor.setAcceleration(200);
         }
     }
 
-
+    @Test
+    public void testStop() throws RemoteException {
+        Behavior b1 = new DriveForward();
+        Behavior b2 = new StopOnYellow();
+        Behavior[] behaviorList = {b1, b2};
+        Arbitrator arbitrator = new Arbitrator(behaviorList, true);
+        arbitrator.start();
+        arbitrator.stop();
+    }
 }
