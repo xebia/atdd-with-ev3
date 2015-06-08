@@ -1,20 +1,25 @@
 package com.xebia.lego.mindstorms.ev3.test;
 
+import cucumber.api.CucumberOptions;
+import cucumber.api.junit.Cucumber;
 import lejos.hardware.Sound;
 import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.remote.ev3.RMIRegulatedMotor;
 import lejos.remote.ev3.RemoteEV3;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.runner.RunWith;
 
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-public class EV3Test {
-    static EV3ColorSensor colorSensor;
-    static RMIRegulatedMotor left;
-    static RMIRegulatedMotor right;
+@RunWith(Cucumber.class)
+@CucumberOptions(format = {"pretty", "html:target/cucumber"})
+public class CucumberTest {
+    public static EV3ColorSensor colorSensor;
+    public static RMIRegulatedMotor left;
+    public static RMIRegulatedMotor right;
     static String remoteEv3Ip =  "10.0.1.1";
 
     @BeforeClass
@@ -43,4 +48,5 @@ public class EV3Test {
             motor.close();
         }
     }
+
 }
