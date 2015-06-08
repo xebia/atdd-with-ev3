@@ -12,7 +12,7 @@ public class StopOnYellow implements Behavior {
         this.driver = driver;
     }
     public boolean takeControl() {
-        return !suppressed && StopTest.colorSensor.getColorID() == 3;
+        return !suppressed && Ev3BrickIO.colorSensor.getColorID() == 3;
     }
 
     public void suppress() {

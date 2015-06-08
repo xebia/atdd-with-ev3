@@ -1,7 +1,7 @@
 package com.xebia.lego.mindstorms.ev3.test.stepdefs;
 
-import com.xebia.lego.mindstorms.ev3.test.CucumberTest;
 import com.xebia.lego.mindstorms.ev3.test.DriveForward;
+import com.xebia.lego.mindstorms.ev3.test.Ev3BrickIO;
 import com.xebia.lego.mindstorms.ev3.test.StopOnYellow;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -23,12 +23,12 @@ public class MoveStepDef {
         behaviorList = new Behavior[]{driveForward, stopOnYellow};
         arbitrator = new Arbitrator(behaviorList, true);
         arbitrator.start();
-        assertThat(CucumberTest.colorSensor.getColorID(), is(3));
+        assertThat(Ev3BrickIO.colorSensor.getColorID(), is(3));
     }
 
     @Then("^the robot stops$")
     public void the_robot_stops() throws Throwable {
-        assertThat(CucumberTest.leftMotor.isMoving(), is(false));
+        assertThat(Ev3BrickIO.leftMotor.isMoving(), is(false));
     }
 
 }

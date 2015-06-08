@@ -4,25 +4,18 @@ import lejos.hardware.Sound;
 import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.remote.ev3.RMIRegulatedMotor;
 import lejos.remote.ev3.RemoteEV3;
-import lejos.robotics.subsumption.Arbitrator;
-import lejos.robotics.subsumption.Behavior;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-public class StopTest {
-
+public class Ev3BrickIO {
     public static EV3ColorSensor colorSensor;
     public static RMIRegulatedMotor leftMotor;
     public static RMIRegulatedMotor rightMotor;
-    static String remoteEv3Ip =  "10.0.1.1";
+    public static String remoteEv3Ip =  "10.0.1.1";
 
-    @BeforeClass
-    public static void setup() throws RemoteException, NotBoundException, MalformedURLException {
+    public static void init() throws RemoteException, NotBoundException, MalformedURLException {
         RemoteEV3 brick = new RemoteEV3(remoteEv3Ip);
         brick.setDefault();
         Sound.beep();
@@ -34,7 +27,6 @@ public class StopTest {
 
     }
 
-    @AfterClass
     public static void tearDown() throws RemoteException {
         if (colorSensor != null) {
             colorSensor.close();
@@ -56,17 +48,6 @@ public class StopTest {
             motor.resetTachoCount();
             motor.rotateTo(0);
             motor.setSpeed(400);
-            //motor.setAcceleration(200);
         }
-    }
-
-    @Test
-    public void testStop() throws RemoteException {
-        Behavior b1 = new DriveForward();
-        Behavior b2 = new StopOnYellow(b1);
-        Behavior[] behaviorList = {b1, b2};
-        Arbitrator arbitrator = new Arbitrator(behaviorList, true);
-        arbitrator.start();
-        arbitrator.stop();
     }
 }

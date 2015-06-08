@@ -19,14 +19,13 @@ public class DriveForward implements Behavior{
 
     public void action() {
         try {
-            StopTest.leftMotor.forward();
-            StopTest.rightMotor.forward();
+            Ev3BrickIO.leftMotor.forward();
+            Ev3BrickIO.rightMotor.forward();
             while( !suppressed ) {
                 Thread.yield();
             }
-            StopTest.leftMotor.stop(true);
-            StopTest.rightMotor.stop(true);
-
+            Ev3BrickIO.leftMotor.stop(true);
+            Ev3BrickIO.rightMotor.stop(true);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
