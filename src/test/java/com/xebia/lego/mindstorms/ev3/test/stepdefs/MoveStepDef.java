@@ -17,7 +17,7 @@ public class MoveStepDef {
     public void the_robot_is_moving() throws Throwable {
         left.forward();
         right.forward();
-        assertThat(left.isMoving(), is(false));
+        assertThat(left.isMoving(), is(true));
         Button.waitForAnyPress();
     }
 
