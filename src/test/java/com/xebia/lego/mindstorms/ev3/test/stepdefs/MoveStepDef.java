@@ -15,7 +15,7 @@ public class MoveStepDef {
 
     Arbitrator arbitrator;
     Behavior driveForward = new DriveForward();
-    Behavior stopOnYellow = new StopOnYellow();
+    Behavior stopOnYellow = new StopOnYellow(driveForward);
     Behavior[] behaviorList;
 
     @When("^the robot is moving and encounters yellow$")

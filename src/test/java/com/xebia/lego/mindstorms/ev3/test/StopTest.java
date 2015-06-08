@@ -63,7 +63,7 @@ public class StopTest {
     @Test
     public void testStop() throws RemoteException {
         Behavior b1 = new DriveForward();
-        Behavior b2 = new StopOnYellow();
+        Behavior b2 = new StopOnYellow(b1);
         Behavior[] behaviorList = {b1, b2};
         Arbitrator arbitrator = new Arbitrator(behaviorList, true);
         arbitrator.start();

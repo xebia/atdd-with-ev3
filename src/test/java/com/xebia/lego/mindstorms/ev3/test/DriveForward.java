@@ -10,7 +10,7 @@ public class DriveForward implements Behavior{
     private boolean suppressed = false;
 
     public boolean takeControl() {
-        return true;
+        return !suppressed;
     }
 
     public void suppress() {
@@ -20,17 +20,15 @@ public class DriveForward implements Behavior{
     public void action() {
         try {
             suppressed = false;
-            System.out.println("DriveForward - Move forward");
             StopTest.leftMotor.forward();
             StopTest.rightMotor.forward();
             while( !suppressed ) {
                 Thread.yield();
             }
-            System.out.println("DriveForward - Stopping motor");
             StopTest.leftMotor.stop(true);
             StopTest.rightMotor.stop(true);
+
         } catch (RemoteException e) {
-            System.out.println("DriveForward - Exception - " + e.getMessage());
             e.printStackTrace();
         }
     }

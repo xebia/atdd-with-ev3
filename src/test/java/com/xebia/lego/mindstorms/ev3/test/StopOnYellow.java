@@ -7,9 +7,13 @@ import java.rmi.RemoteException;
 
 public class StopOnYellow implements Behavior {
 
+    private final Behavior driver;
     private boolean suppressed = false;
     private boolean stopReading = false;
 
+    public StopOnYellow(Behavior driver) {
+        this.driver = driver;
+    }
     public boolean takeControl() {
         boolean result = false;
         if (!stopReading && StopTest.colorSensor.getColorID() == 3) {
@@ -24,28 +28,8 @@ public class StopOnYellow implements Behavior {
     }
 
     public void action() {
-        try {
             suppressed = false;
             stopReading = true;
-            System.out.println("StopOnYellow - Stop motors");
-            StopTest.leftMotor.stop(true);
-            StopTest.rightMotor.stop(true);
-
-            while( StopTest.leftMotor.isMoving() && StopTest.rightMotor.isMoving() && !suppressed ) {
-                Thread.yield();
-            }
-
-            System.out.println("StopOnYellow - Stop motors again");
-            StopTest.leftMotor.stop(true);
-            StopTest.rightMotor.stop(true);
-            StopTest.leftMotor.close();
-            StopTest.rightMotor.close();
-            StopTest.colorSensor.close();
-
-
-        } catch (RemoteException e) {
-            System.out.println("StopOnYellow - Exception - " + e.getMessage());
-            e.printStackTrace();
-        }
+            driver.suppress();
     }
 }
