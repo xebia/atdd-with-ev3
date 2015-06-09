@@ -6,11 +6,11 @@ import lejos.robotics.subsumption.Behavior;
 
 public class StopOnYellow implements Behavior {
 
-    private final Behavior driver;
+    private final Behavior driveforward;
     private boolean suppressed = false;
 
-    public StopOnYellow(Behavior driver) {
-        this.driver = driver;
+    public StopOnYellow(Behavior driveforward) {
+        this.driveforward = driveforward;
     }
     public boolean takeControl() {
         return !suppressed && Ev3BrickIO.colorSensor.getColorID() == 3;
@@ -22,6 +22,6 @@ public class StopOnYellow implements Behavior {
 
     public void action() {
         suppressed = true;
-        driver.suppress();
+        driveforward.suppress();
     }
 }
