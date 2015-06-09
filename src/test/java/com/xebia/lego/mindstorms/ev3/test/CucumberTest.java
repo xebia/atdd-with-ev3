@@ -12,7 +12,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(format = {"pretty", "html:target/cucumber"})
+@CucumberOptions(format = {"pretty", "html:target/cucumber"}, tags = {"@red"})
 public class CucumberTest {
 
     @BeforeClass

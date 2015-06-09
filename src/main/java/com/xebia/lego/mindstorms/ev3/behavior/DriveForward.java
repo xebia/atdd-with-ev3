@@ -11,11 +11,7 @@ public class DriveForward implements Behavior{
     private boolean suppressed = false;
 
     public boolean takeControl() {
-        return !suppressed;
-    }
-
-    public void unsuppress() {
-        suppressed = false;
+        return Ev3BrickIO.running;
     }
 
     public void suppress() {
@@ -24,18 +20,17 @@ public class DriveForward implements Behavior{
 
     public void action() {
         try {
-            System.out.println("Going forward!");
+            suppressed = false;
+            System.out.println("DriveForward, Going forward!");
             Ev3BrickIO.leftMotor.forward();
             Ev3BrickIO.rightMotor.forward();
-            System.out.println("Going forward done!");
             while( !suppressed ) {
                 //System.out.println("Yielding");
                 Thread.yield();
             }
-            System.out.println("Stopping!");
+            System.out.println("DriveForward, Stopping!");
             Ev3BrickIO.leftMotor.stop(true);
             Ev3BrickIO.rightMotor.stop(true);
-            System.out.println("Stopping Completed!");
         } catch (RemoteException e) {
             e.printStackTrace();
         }

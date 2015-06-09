@@ -6,22 +6,21 @@ import lejos.robotics.subsumption.Behavior;
 
 public class StopOnYellow implements Behavior {
 
-    private final Behavior driveforward;
-    private boolean suppressed = false;
-
-    public StopOnYellow(Behavior driveforward) {
-        this.driveforward = driveforward;
-    }
     public boolean takeControl() {
-        return !suppressed && Ev3BrickIO.colorSensor.getColorID() == 3;
+        try {
+            return Ev3BrickIO.running && Ev3BrickIO.colorSensor.getColorID() == 3;
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Could not read color sensor (TurnOnYellow)");
+            return false;
+        }
+
     }
 
     public void suppress() {
-        suppressed = true;
     }
 
     public void action() {
-        suppressed = true;
-        driveforward.suppress();
+        System.out.println("Yellow found, GOAL Completed!");
+        Ev3BrickIO.running = false;
     }
 }
