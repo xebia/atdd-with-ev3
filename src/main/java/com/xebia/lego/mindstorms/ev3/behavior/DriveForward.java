@@ -22,6 +22,8 @@ public class DriveForward implements Behavior{
         try {
             suppressed = false;
             System.out.println("DriveForward, Going forward!");
+
+
             Ev3BrickIO.leftMotor.forward();
             Ev3BrickIO.rightMotor.forward();
             while( !suppressed ) {

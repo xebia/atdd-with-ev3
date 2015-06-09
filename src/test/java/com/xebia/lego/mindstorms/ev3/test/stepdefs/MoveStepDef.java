@@ -26,19 +26,19 @@ public class MoveStepDef {
         behaviorList = new Behavior[]{driveForward, turnOnRed};
         arbitrator = new Arbitrator(behaviorList, true);
         arbitrator.start();
-        assertThat(Ev3BrickIO.colorSensor.getColorID(), is(13));
+        assertThat(Ev3BrickIO.colorSensor.getColorID(), is(6));
     }
 
     @Then("^the robot turns$")
     public void the_robot_moves_backwards() throws Throwable {
-        assertThat(Ev3BrickIO.leftMotor.isMoving(), is(true));
+        //throw new PendingException();
+        int speed = Ev3BrickIO.leftMotor.getSpeed();
+        assertThat(Ev3BrickIO.leftMotor.getSpeed(), is(speed));
     }
-
-
 
     @When("^the robot is moving and encounters yellow$")
     public void the_robot_encounters_yellow() throws Throwable {
-        behaviorList = new Behavior[]{driveForward, stopOnYellow};
+        behaviorList = new Behavior[]{driveForward, turnOnRed, stopOnYellow};
         arbitrator = new Arbitrator(behaviorList, true);
         arbitrator.start();
         assertThat(Ev3BrickIO.colorSensor.getColorID(), is(3));
