@@ -8,14 +8,10 @@ import java.rmi.RemoteException;
 
 public class TurnOnRed implements Behavior {
 
-    //private final Behavior turn;
     private boolean suppressed = false;
-
-    //private final Behavior driver;
 
     public boolean takeControl() {
         try {
-            //System.out.println("Gevonden kleur is: " + Ev3BrickIO.colorSensor.getColorID());
             return Ev3BrickIO.running && Ev3BrickIO.colorSensor.getColorID() == 13;
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Could not read color sensor (TurnOnRed");

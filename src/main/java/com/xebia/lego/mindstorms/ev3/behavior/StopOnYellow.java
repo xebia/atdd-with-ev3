@@ -2,6 +2,8 @@ package com.xebia.lego.mindstorms.ev3.behavior;
 
 
 import com.xebia.lego.mindstorms.ev3.Ev3BrickIO;
+import lejos.hardware.Sound;
+import lejos.hardware.Sounds;
 import lejos.robotics.subsumption.Behavior;
 
 public class StopOnYellow implements Behavior {
@@ -24,5 +26,7 @@ public class StopOnYellow implements Behavior {
         System.out.println("Yellow found, GOAL Completed!");
         Ev3BrickIO.foundyellow = true;
         Ev3BrickIO.running = false;
+        Sound.twoBeeps();
+
     }
 }
