@@ -16,6 +16,8 @@ public class Ev3BrickIO {
     public static String remoteEv3Ip =  "10.0.1.1";
 
     public static boolean running = true;
+    public static boolean foundred = false;
+    public static boolean foundyellow = false;
 
     public static void init() throws RemoteException, NotBoundException, MalformedURLException {
         RemoteEV3 brick = new RemoteEV3(remoteEv3Ip);
@@ -26,13 +28,12 @@ public class Ev3BrickIO {
         rightMotor = brick.createRegulatedMotor("D", 'L');
         resetMotor(leftMotor);
         resetMotor(rightMotor);
-
     }
 
     public static void tearDown() throws RemoteException {
         if (colorSensor != null) {
             colorSensor.close();
-            System.out.println("Cleanup: Closing Color Sensor");
+            System.out.println("Cleanup: Closing Color sensor");
         }
         System.out.println("Cleanup: Closing Motors");
         closeMotor(leftMotor);

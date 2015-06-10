@@ -10,6 +10,7 @@ public class TurnOnRed implements Behavior {
 
     //private final Behavior turn;
     private boolean suppressed = false;
+
     //private final Behavior driver;
 
     public boolean takeControl() {
@@ -29,22 +30,21 @@ public class TurnOnRed implements Behavior {
     public void action() {
 
         suppressed = false;
+        Ev3BrickIO.foundred = true;
 
         try {
             System.out.println("Red found, turning robot!");
 
-            Ev3BrickIO.leftMotor.setSpeed(200);
-            Ev3BrickIO.rightMotor.setSpeed(200);
+            Ev3BrickIO.leftMotor.resetTachoCount();
+            Ev3BrickIO.rightMotor.resetTachoCount();
             Ev3BrickIO.leftMotor.rotate(360, true);
             Ev3BrickIO.rightMotor.rotate(-360, true);
 
-
             while((Ev3BrickIO.leftMotor.isMoving() || Ev3BrickIO.rightMotor.isMoving()) && !suppressed)
-                Thread.yield();  // wait till turn is complete or suppressed is called
-
+                Thread.yield();
             System.out.println("Turn Completed!");
-            Ev3BrickIO.leftMotor.setSpeed(400);
-            Ev3BrickIO.rightMotor.setSpeed(400);
+            System.out.println("Angle: " +Ev3BrickIO.rightMotor.getTachoCount());
+
         } catch (RemoteException e) {
             e.printStackTrace();
         }
