@@ -19,6 +19,8 @@
             <groupId>lejos</groupId>
             <artifactId>ev3classes</artifactId>
             <version>0.9.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/ev3classes.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
