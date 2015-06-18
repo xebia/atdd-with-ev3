@@ -1,6 +1,7 @@
 package com.xebia.lego.mindstorms.ev3.test.stepdefs;
 
 import com.xebia.lego.mindstorms.ev3.Ev3BrickIO;
+import com.xebia.lego.mindstorms.ev3.behavior.BeepOnWhite;
 import com.xebia.lego.mindstorms.ev3.behavior.DriveForward;
 import com.xebia.lego.mindstorms.ev3.behavior.StopOnYellow;
 import com.xebia.lego.mindstorms.ev3.behavior.TurnOnRed;
@@ -20,6 +21,7 @@ public class MoveStepDef {
     DriveForward driveForward = new DriveForward();
     Behavior stopOnYellow = new StopOnYellow();
     Behavior turnOnRed = new TurnOnRed();
+    Behavior beepOnWhite = new BeepOnWhite();
     Behavior[] behaviorList;
 
     @When("^the robot encounters a red line$")
@@ -36,19 +38,20 @@ public class MoveStepDef {
 
         assertThat(Ev3BrickIO.rightMotor.getTachoCount(), is(-360));
 
+
         arbitrator.stop();
     }
 
     @When("^the robot encounters yellow$")
     public void the_robot_encounters_yellow() throws Throwable {
 
-        behaviorList = new Behavior[]{driveForward, turnOnRed, stopOnYellow};
+        behaviorList = new Behavior[]{driveForward, stopOnYellow};
         arbitrator = new Arbitrator(behaviorList, true);
         arbitrator.start();
 
         while(Ev3BrickIO.colorSensor.getColorID() != 3)
         {
-            behaviorList = new Behavior[]{driveForward, turnOnRed, stopOnYellow};
+            behaviorList = new Behavior[]{driveForward, stopOnYellow};
             arbitrator = new Arbitrator(behaviorList, true);
             arbitrator.start();
         }
@@ -63,5 +66,18 @@ public class MoveStepDef {
         //assertThat(Ev3BrickIO.running, is(false));
 
         }
+
+    @When("^the robot encounters white$")
+    public void the_robot_encounters_white() throws Throwable {
+        behaviorList = new Behavior[]{driveForward, turnOnRed, beepOnWhite};
+        arbitrator = new Arbitrator(behaviorList, true);
+        arbitrator.start();
+    }
+
+    @Then("^the robot beeps$")
+    public void the_robot_beeps() throws Throwable {
+
+    }
+
     }
 

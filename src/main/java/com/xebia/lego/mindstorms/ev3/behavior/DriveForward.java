@@ -1,8 +1,10 @@
 package com.xebia.lego.mindstorms.ev3.behavior;
 
 import com.xebia.lego.mindstorms.ev3.Ev3BrickIO;
+import lejos.robotics.*;
 import lejos.robotics.subsumption.Behavior;
 
+import java.awt.*;
 import java.rmi.RemoteException;
 
 
@@ -21,8 +23,10 @@ public class DriveForward implements Behavior{
     public void action() {
         try {
             suppressed = false;
-            System.out.println("DriveForward, Going forward!");
 
+            //lejos.robotics.Color
+            System.out.println("DriveForward, Going forward!");
+            System.out.println("Color is: " + Ev3BrickIO.colorSensor.getColorID());
 
             Ev3BrickIO.leftMotor.forward();
             Ev3BrickIO.rightMotor.forward();

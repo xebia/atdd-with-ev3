@@ -2,6 +2,7 @@ package com.xebia.lego.mindstorms.ev3.behavior;
 
 
 import com.xebia.lego.mindstorms.ev3.Ev3BrickIO;
+import lejos.robotics.Color;
 import lejos.robotics.subsumption.Behavior;
 
 import java.rmi.RemoteException;
@@ -12,7 +13,9 @@ public class TurnOnRed implements Behavior {
 
     public boolean takeControl() {
         try {
-            return Ev3BrickIO.running && Ev3BrickIO.colorSensor.getColorID() == 13;
+
+            System.out.println("Color is: " + Ev3BrickIO.colorSensor.getColorID());
+            return Ev3BrickIO.running && Ev3BrickIO.colorSensor.getColorID() == 6;
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Could not read color sensor (TurnOnRed");
             return false;
