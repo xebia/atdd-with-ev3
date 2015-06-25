@@ -7,8 +7,7 @@ import lejos.robotics.subsumption.Behavior;
 import java.awt.*;
 import java.rmi.RemoteException;
 
-
-public class DriveForward implements Behavior{
+public class Drive implements Behavior{
 
     private boolean suppressed = false;
 

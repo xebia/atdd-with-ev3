@@ -7,18 +7,17 @@ import lejos.hardware.Sounds;
 import lejos.robotics.Color;
 import lejos.robotics.subsumption.Behavior;
 
-public class StopOnYellow implements Behavior {
+public class Stop implements Behavior {
 
     public boolean takeControl() {
         try {
 
             System.out.println("Color is: " + Ev3BrickIO.colorSensor.getColorID());
-            return Ev3BrickIO.running && Ev3BrickIO.colorSensor.getColorID() == 3;
+            return Ev3BrickIO.running && Ev3BrickIO.colorSensor.getColorID() == Ev3BrickIO.stopColor;
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Could not read color sensor (StopOnYellow)");
+            System.out.println("Could not read color sensor (Stop)");
             return false;
         }
-
     }
 
     public void suppress() {
@@ -29,6 +28,5 @@ public class StopOnYellow implements Behavior {
         Ev3BrickIO.foundyellow = true;
         Ev3BrickIO.running = false;
         Sound.twoBeeps();
-
     }
 }

@@ -12,9 +12,10 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(format = {"pretty", "html:target/cucumber"})
+@CucumberOptions(format = {"pretty", "html:target/cucumber"}, tags = "@Moving")
 public class CucumberTest {
 
+    /*
     @BeforeClass
     public static void setup() throws RemoteException, NotBoundException, MalformedURLException {
         Ev3BrickIO.init();
@@ -24,5 +25,5 @@ public class CucumberTest {
     public static void tearDown() throws RemoteException {
         Ev3BrickIO.tearDown();
     }
-
+*/
 }

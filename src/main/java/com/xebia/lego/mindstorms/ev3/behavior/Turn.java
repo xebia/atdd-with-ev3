@@ -7,7 +7,7 @@ import lejos.robotics.subsumption.Behavior;
 
 import java.rmi.RemoteException;
 
-public class TurnOnRed implements Behavior {
+public class Turn implements Behavior {
 
     private boolean suppressed = false;
 
@@ -15,9 +15,9 @@ public class TurnOnRed implements Behavior {
         try {
 
             System.out.println("Color is: " + Ev3BrickIO.colorSensor.getColorID());
-            return Ev3BrickIO.running && Ev3BrickIO.colorSensor.getColorID() == 6;
+            return Ev3BrickIO.running && Ev3BrickIO.colorSensor.getColorID() == Ev3BrickIO.turnColor;
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Could not read color sensor (TurnOnRed");
+            System.out.println("Could not read color sensor (Turn");
             return false;
         }
     }
