@@ -1,6 +1,7 @@
 package com.xebia.lego.mindstorms.ev3;
 
 import lejos.hardware.Sound;
+import lejos.hardware.motor.BaseRegulatedMotor;
 import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.remote.ev3.RMIRegulatedMotor;
 import lejos.remote.ev3.RemoteEV3;

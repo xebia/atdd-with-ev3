@@ -42,7 +42,8 @@ public class MoveStepDef {
     @When("^the robot encounters yellow$")
     public void the_robot_encounters_yellow() throws Throwable {
 
-        behaviorList = new Behavior[]{driveForward, turnOnRed, stopOnYellow};
+        //behaviorList = new Behavior[]{driveForward, turnOnRed, stopOnYellow};
+        behaviorList = new Behavior[]{driveForward, stopOnYellow};
         arbitrator = new Arbitrator(behaviorList, true);
         arbitrator.start();
 
