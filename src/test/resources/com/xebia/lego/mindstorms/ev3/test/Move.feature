@@ -8,4 +8,4 @@ Feature: The robot can move and perform actions
     When the robot encounters yellow
     Then the robot stops
 
-  Scenario: Robot beeps when blue is detected.
+  #Scenario: Robot beeps when blue is detected.

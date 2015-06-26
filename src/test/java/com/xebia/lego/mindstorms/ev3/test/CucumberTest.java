@@ -15,14 +15,13 @@ import java.rmi.RemoteException;
 @CucumberOptions(format = {"pretty", "html:target/cucumber"})
 public class CucumberTest {
 
-    @BeforeClass
-    public static void setup() throws RemoteException, NotBoundException, MalformedURLException {
-        Ev3BrickIO.init();
-    }
+  @BeforeClass
+  public static void setup() throws RemoteException, NotBoundException, MalformedURLException {
+    Ev3BrickIO.init();
+  }
 
-    @AfterClass
-    public static void tearDown() throws RemoteException {
-        Ev3BrickIO.tearDown();
-    }
-
+  @AfterClass
+  public static void tearDown() throws RemoteException {
+    Ev3BrickIO.tearDown();
+  }
 }
